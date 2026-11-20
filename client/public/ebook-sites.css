@@ -37,3 +37,55 @@ html.site-dark-mode .ebook-site-cover.has-image img{filter:saturate(.82) brightn
 html.site-dark-mode #site-theme-toggle{background:#202b24;color:#f1f4f1;border-color:#506256}
 html.site-dark-mode #site-theme-toggle:hover{background:#34443a;border-color:#d78370}
 @media(max-width:600px){#site-theme-toggle{flex-basis:36px;width:36px;height:36px}.notification-trigger{width:36px;height:36px}.notification-wrap{gap:6px}}
+
+
+/* Refinamento de proporções: reduzir espaços verticais e manter o conteúdo mais compacto */
+#projetos-e-book{padding-top:68px;padding-bottom:68px;padding-left:max(22px,calc((100vw - 1160px)/2));padding-right:max(22px,calc((100vw - 1160px)/2))}
+.ebook-sites-heading{gap:28px;margin-bottom:20px}
+.ebook-sites-heading h2{font-size:clamp(34px,3.8vw,52px)}
+.ebook-sites-heading p{font-size:14px;line-height:1.55}
+.ebook-sites-filters{gap:7px;margin-bottom:22px}
+.ebook-sites-filters button{padding:8px 13px}
+.ebook-sites-grid{gap:14px}
+.ebook-site-cover{height:138px}
+.ebook-site-card-body{padding:16px 16px 15px}
+.ebook-site-card h3{font-size:21px;margin:11px 0 8px}
+.ebook-site-card p{font-size:13px;line-height:1.5}
+.ebook-site-actions{gap:9px;padding-top:16px}
+.ebook-access-mockups{margin-top:48px;padding-top:34px}
+.ebook-access-mockups-heading h3{font-size:clamp(30px,3.5vw,44px);margin:10px 0 22px}
+.ebook-detail-inner{padding-bottom:56px}
+.ebook-detail-layout{gap:48px;margin-top:30px}
+.ebook-detail-art .ebook-site-cover{height:440px}
+.ebook-detail-copy h1{font-size:clamp(42px,5vw,68px);margin:12px 0 18px}
+.ebook-detail-lead{font-size:16px;line-height:1.6}
+.ebook-detail-copy ul{margin:20px 0;line-height:1.65}
+@media(max-width:800px){
+  #projetos-e-book{padding:48px 18px}
+  .ebook-sites-heading{margin-bottom:18px}
+  .ebook-sites-heading h2{font-size:clamp(30px,7vw,40px)}
+  .ebook-sites-heading p{margin-top:12px;font-size:13px}
+  .ebook-sites-filters{margin-bottom:18px}
+  .ebook-sites-grid{gap:12px 9px}
+  .ebook-site-cover{height:122px}
+  .ebook-site-card-body{padding:10px 9px 11px}
+  .ebook-site-card h3{font-size:16px;margin:7px 0 6px}
+  .ebook-site-card p{font-size:10px;line-height:1.35}
+  .ebook-site-actions{padding-top:10px;gap:6px}
+  .ebook-access-mockups{margin-top:34px;padding-top:26px}
+  .ebook-access-mockups-heading h3{font-size:30px;margin-bottom:18px}
+  .ebook-detail-inner{padding:18px 16px 38px}
+  .ebook-detail-layout{margin-top:18px}
+  .ebook-detail-art .ebook-site-cover{height:260px;margin-bottom:24px}
+  .ebook-detail-copy h1{font-size:40px;margin:10px 0 14px}
+  .ebook-detail-copy ul{margin:16px 0}
+}
+@media(max-width:420px){
+  #projetos-e-book{padding-left:14px;padding-right:14px}
+  .ebook-site-cover{height:108px}
+  .ebook-site-cover b{font-size:25px}
+  .ebook-site-eyebrow{font-size:8px;letter-spacing:.1em}
+  .ebook-site-card h3{font-size:14px}
+  .ebook-site-actions a,.ebook-site-details{font-size:9px}
+  .ebook-site-actions .ebook-site-buy{padding:8px 8px}
+}
