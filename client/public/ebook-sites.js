@@ -1,4 +1,41 @@
 (() => {
+  // Alternância de tema com preferência persistente no navegador.
+  const initThemeToggle = () => {
+    const storageKey = 'digitalquintino-theme';
+    const applyTheme = (dark) => {
+      document.documentElement.classList.toggle('site-dark-mode', dark);
+      const button = document.querySelector('#site-theme-toggle');
+      if (button) {
+        button.textContent = dark ? '☀️' : '🌙';
+        button.setAttribute('aria-label', dark ? 'Ativar tema claro' : 'Ativar tema escuro');
+        button.setAttribute('aria-pressed', String(dark));
+        button.title = dark ? 'Ativar tema claro' : 'Ativar tema escuro';
+      }
+    };
+    let dark = false;
+    try { dark = localStorage.getItem(storageKey) === 'dark'; } catch {}
+    applyTheme(dark);
+    if (!document.querySelector('#site-theme-toggle')) {
+      const button = document.createElement('button');
+      button.id = 'site-theme-toggle';
+      button.type = 'button';
+      button.textContent = dark ? '☀️' : '🌙';
+      button.setAttribute('aria-label', dark ? 'Ativar tema claro' : 'Ativar tema escuro');
+      button.setAttribute('aria-pressed', String(dark));
+      button.title = dark ? 'Ativar tema claro' : 'Ativar tema escuro';
+      button.addEventListener('click', () => {
+        dark = !document.documentElement.classList.contains('site-dark-mode');
+        try { localStorage.setItem(storageKey, dark ? 'dark' : 'light'); } catch {}
+        applyTheme(dark);
+      });
+      document.body.appendChild(button);
+    }
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle, { once: true });
+  } else {
+    initThemeToggle();
+  }
   const sites = [
     { slug:'quebrando-habito', title:'Quebrando o Hábito de Ser Você Mesmo', eyebrow:'Desenvolvimento pessoal', category:'desenvolvimento', initials:'QH', tone:'ink', text:'Uma leitura para reconhecer padrões, ampliar a consciência e experimentar novas possibilidades.', bullets:['Reconheça padrões que limitam suas escolhas','Exercícios de consciência e mudança','Uma jornada prática de desenvolvimento pessoal'], page:'https://github.com/KyoQuintino/quebrando-o-habito-joaozinho', checkout:'https://pay.hotmart.com/U107546962B' },
     { slug:'como-fazer-amigos', title:'Como Fazer Amigos e Influenciar Pessoas', eyebrow:'Relacionamentos', category:'relacionamentos', initials:'CF', tone:'sky', text:'Ideias práticas para criar conversas mais próximas, relações de confiança e influência sem forçar.', bullets:['Conversas que aproximam','Relações com mais confiança','Influência sem perder autenticidade'], page:'https://github.com/KyoQuintino/como-fazer-amigos-e-influenciar-pessoas-inovatek', checkout:'' },
