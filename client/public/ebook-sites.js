@@ -1,5 +1,5 @@
 (() => {
-  // Alternância de tema com preferência persistente no navegador.
+  // Alternância de tema posicionada ao lado do sino de notificações.
   const initThemeToggle = () => {
     const storageKey = 'digitalquintino-theme';
     const applyTheme = (dark) => {
@@ -15,20 +15,35 @@
     let dark = false;
     try { dark = localStorage.getItem(storageKey) === 'dark'; } catch {}
     applyTheme(dark);
-    if (!document.querySelector('#site-theme-toggle')) {
-      const button = document.createElement('button');
-      button.id = 'site-theme-toggle';
-      button.type = 'button';
-      button.textContent = dark ? '☀️' : '🌙';
-      button.setAttribute('aria-label', dark ? 'Ativar tema claro' : 'Ativar tema escuro');
-      button.setAttribute('aria-pressed', String(dark));
-      button.title = dark ? 'Ativar tema claro' : 'Ativar tema escuro';
-      button.addEventListener('click', () => {
-        dark = !document.documentElement.classList.contains('site-dark-mode');
-        try { localStorage.setItem(storageKey, dark ? 'dark' : 'light'); } catch {}
-        applyTheme(dark);
+
+    const placeButton = () => {
+      const notificationWrap = document.querySelector('.notification-wrap');
+      const notificationButton = notificationWrap?.querySelector('.notification-trigger');
+      if (!notificationWrap || !notificationButton) return false;
+      let button = document.querySelector('#site-theme-toggle');
+      if (!button) {
+        button = document.createElement('button');
+        button.id = 'site-theme-toggle';
+        button.type = 'button';
+        button.addEventListener('click', () => {
+          dark = !document.documentElement.classList.contains('site-dark-mode');
+          try { localStorage.setItem(storageKey, dark ? 'dark' : 'light'); } catch {}
+          applyTheme(dark);
+        });
+      }
+      if (button.parentElement !== notificationWrap || button.nextElementSibling !== notificationButton) {
+        notificationWrap.insertBefore(button, notificationButton);
+      }
+      applyTheme(dark);
+      return true;
+    };
+
+    if (!placeButton()) {
+      const observer = new MutationObserver(() => {
+        if (placeButton()) observer.disconnect();
       });
-      document.body.appendChild(button);
+      observer.observe(document.body, { childList: true, subtree: true });
+      setTimeout(() => observer.disconnect(), 15000);
     }
   };
   if (document.readyState === 'loading') {
