@@ -89,3 +89,19 @@ html.site-dark-mode #site-theme-toggle:hover{background:#34443a;border-color:#d7
   .ebook-site-actions a,.ebook-site-details{font-size:9px}
   .ebook-site-actions .ebook-site-buy{padding:8px 8px}
 }
+
+
+/* Vitrine minimalista: somente capa e chamada para conhecer o e-book */
+#projetos-e-book .ebook-site-card.ebook-cover-only-card{background:transparent;border:0;border-radius:8px;box-shadow:none;overflow:visible;gap:0}
+#projetos-e-book .ebook-site-card.ebook-cover-only-card:hover{transform:translateY(-3px);box-shadow:none}
+#projetos-e-book .ebook-cover-only-card>.ebook-site-cover{height:250px;border-radius:6px;box-shadow:0 12px 24px rgba(36,53,44,.14)}
+#projetos-e-book .ebook-cover-only-card>.ebook-site-card-body{padding:12px 0 0;display:block;flex:initial}
+#projetos-e-book .ebook-site-actions{display:none}
+#projetos-e-book .ebook-site-know{display:block;width:100%;border:1px solid #24352c;border-radius:999px;background:#24352c;color:#fffdf8;padding:12px 14px;font:700 12px/1.2 'DM Sans',sans-serif;cursor:pointer;transition:background .18s ease,border-color .18s ease,transform .18s ease}
+#projetos-e-book .ebook-site-know:hover{background:#c56f5d;border-color:#c56f5d;color:#fffdf8;text-decoration:none}
+#projetos-e-book .ebook-site-know:focus-visible{outline:3px solid #d78370;outline-offset:3px}
+.ebook-access-mockups{display:none!important}
+html.site-dark-mode #projetos-e-book .ebook-site-know{background:#d78370;border-color:#d78370;color:#171d19}
+html.site-dark-mode #projetos-e-book .ebook-site-know:hover{background:#e7a08f;border-color:#e7a08f}
+@media(max-width:800px){#projetos-e-book .ebook-cover-only-card>.ebook-site-cover{height:190px}#projetos-e-book .ebook-cover-only-card>.ebook-site-card-body{padding-top:9px}#projetos-e-book .ebook-site-know{padding:10px 8px;font-size:10px}}
+@media(max-width:420px){#projetos-e-book .ebook-cover-only-card>.ebook-site-cover{height:150px}}
