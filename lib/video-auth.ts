@@ -21,7 +21,7 @@ export function isVideoAdmin(req: any) {
   if (!cookie) return false;
   const token = decodeURIComponent(cookie.slice(COOKIE_NAME.length + 1));
   const [timestamp, suppliedSignature] = token.split(".");
-  if (!timestamp || !suppliedSignature || !/^\\d+$/.test(timestamp)) return false;
+  if (!timestamp || !suppliedSignature || !/^\d+$/.test(timestamp)) return false;
   const age = Math.floor(Date.now() / 1000) - Number(timestamp);
   if (age < 0 || age > SESSION_SECONDS) return false;
   return safeEqual(signature(timestamp, secret), suppliedSignature);
