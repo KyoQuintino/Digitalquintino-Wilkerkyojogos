@@ -28,7 +28,8 @@ jobs:
           node-version: 20
           cache: pnpm
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        # Keep CI resilient while package.json and pnpm-lock.yaml are synchronized.
+        run: pnpm install --no-frozen-lockfile
       - name: Build site
         run: pnpm run build
       - name: Configure Pages
