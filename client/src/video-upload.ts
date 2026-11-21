@@ -7,7 +7,7 @@ declare global {
       logout(): Promise<void>;
       session(): Promise<boolean>;
       list(): Promise<Array<{ pathname: string; url: string; size: number; uploadedAt: string }>>;
-      upload(file: File, onProgress?: (event: { percentage: number }) => void): Promise<unknown>;
+      upload(file: File, metadata: { title: string; category: string }, onProgress?: (event: { percentage: number }) => void): Promise<unknown>;
       remove(pathname: string): Promise<void>;
     };
   }
@@ -42,9 +42,11 @@ window.DQVideoStorage = {
     const data = await jsonRequest("/api/videos/list");
     return data.videos || [];
   },
-  async upload(file, onProgress) {
-    const safeName = file.name.normalize("NFKD").replace(/[^a-zA-Z0-9._-]+/g, "-").slice(-100);
-    return upload(`videos/${Date.now()}-${safeName}`, file, {
+  async upload(file, metadata, onProgress) {
+    const extension = file.name.split(".").pop()?.toLowerCase() || "mp4";
+    const safeTitle = metadata.title.normalize("NFKD").replace(/[\\u0300-\\u036f]/g, "").replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 70) || "video";
+    const category = ["familia","fe","desenvolvimento","bem-estar","educacao","outros"].includes(metadata.category) ? metadata.category : "outros";
+    return upload(`videos/${category}/${Date.now()}-${safeTitle}.${extension}`, file, {
       access: "public",
       handleUploadUrl: "/api/videos/upload",
       onUploadProgress: onProgress,
