@@ -151,7 +151,8 @@ html.site-dark-mode #projetos-e-book .video-library-meta{color:#dce5de!important
 html.site-dark-mode #projetos-e-book .video-import-progress,html.site-dark-mode #projetos-e-book .video-import-empty{color:#b8c4bc!important}
 html.site-dark-mode #projetos-e-book .video-admin-actions button,html.site-dark-mode #projetos-e-book .video-import-upload{background:#d78370;color:#171d19}
 @media(max-width:800px){#projetos-e-book .video-import-area{grid-template-columns:1fr;padding:18px;gap:14px}#projetos-e-book .video-admin-actions{justify-content:flex-start}#projetos-e-book .video-import-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
-@media(max-width:480px){#projetos-e-book .video-import-gallery{grid-template-columns:1fr}}
+/* Celular: manter dois vídeos por linha, igual ao tablet. */
+@media(max-width:480px){#projetos-e-book .video-import-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}}
 
 
 /* Refinamento premium da primeira dobra: hero, mockups e faixa de confiança */
